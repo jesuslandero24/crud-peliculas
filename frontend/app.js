@@ -1,7 +1,7 @@
 const form = document.getElementById("form-pelicula");
 const lista = document.getElementById("lista-peliculas");
 
-const API_URL = "http://localhost:3000/peliculas";
+const API_URL = "/peliculas";
 
 let peliculas = [];
 
@@ -19,16 +19,17 @@ form.addEventListener("submit", async function (e) {
   const id = document.getElementById("pelicula-id").value;
 
   const datos = {
-    titulo: document.getElementById("titulo").value,
-    director: document.getElementById("director").value,
+    titulo: document.getElementById("titulo").value.trim(),
+    director: document.getElementById("director").value.trim(),
     anio: Number(document.getElementById("anio").value),
-    genero: document.getElementById("genero").value,
+    genero: document.getElementById("genero").value.trim(),
     calificacion: Number(document.getElementById("calificacion").value)
   };
 
+  let res;
+
   if (id) {
-    // UPDATE
-    await fetch(`${API_URL}/${id}`, {
+    res = await fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -36,14 +37,20 @@ form.addEventListener("submit", async function (e) {
       body: JSON.stringify(datos)
     });
   } else {
-    // CREATE
-    await fetch(API_URL, {
+    res = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(datos)
     });
+  }
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    alert(data.error);
+    return;
   }
 
   form.reset();
@@ -87,6 +94,8 @@ function editarPelicula(id) {
   const pelicula = peliculas.find(
     (p) => Number(p.id) === Number(id)
   );
+
+  if (!pelicula) return;
 
   document.getElementById("pelicula-id").value = pelicula.id;
   document.getElementById("titulo").value = pelicula.titulo;
