@@ -1,52 +1,105 @@
-# 🎬 CRUD Películas - SPA
+# 🎬 CineVerse - CRUD Full Stack de Películas
 
-Aplicación web tipo SPA que permite gestionar películas usando CRUD completo con Node.js, Express y PostgreSQL.
+Aplicación web tipo SPA (Single Page Application) desarrollada para gestionar películas mediante operaciones CRUD completas (Crear, Leer, Actualizar y Eliminar).
+
+El proyecto fue desarrollado usando un frontend en HTML, CSS y JavaScript puro, junto con un backend en Node.js + Express conectado a PostgreSQL.
 
 ---
 
-## 🚀 Tecnologías
+# 🚀 Tecnologías utilizadas
 
-- HTML
-- CSS
-- JavaScript
+## Frontend
+- HTML5
+- CSS3
+- JavaScript Vanilla
+
+## Backend
 - Node.js
-- Express
+- Express.js
+
+## Base de Datos
 - PostgreSQL
 
----
-
-## 📁 Estructura del proyecto
-
-```
-frontend/
-backend/
-```
+## Otras herramientas
+- Git
+- GitHub
+- dotenv
+- cors
+- pg
 
 ---
 
-## ⚙️ Instalación
+# 📁 Estructura del proyecto
 
-### 1. Clonar proyecto
+```plaintext
+crud-peliculas/
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
+│
+├── backend/
+│   ├── routes/
+│   │   └── peliculas.routes.js
+│   ├── db.js
+│   ├── server.js
+│   ├── package.json
+│   └── .env
+│
+└── README.md
+```
+
+---
+
+# ✨ Funcionalidades
+
+- ✅ Crear películas
+- ✅ Mostrar películas registradas
+- ✅ Editar películas
+- ✅ Eliminar películas
+- ✅ Persistencia real con PostgreSQL
+- ✅ API REST con Express
+- ✅ Validaciones de formularios
+- ✅ SPA sin recargas de página
+- ✅ Interfaz responsive y moderna
+
+---
+
+# ⚙️ Instalación del proyecto
+
+## 1. Clonar el repositorio
+
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/jesuslandero24/crud-peliculas.git
 ```
 
-### 2. Backend
+---
+
+# 🔐 Configuración del backend
+
+## 2. Entrar a la carpeta backend
+
 ```bash
 cd backend
+```
+
+## 3. Instalar dependencias
+
+```bash
 npm install
 ```
 
 ---
 
-## 🔐 Variables de entorno
+# 🔑 Variables de entorno
 
-Crear archivo `.env` en backend usando:
+Crear un archivo `.env` dentro de `backend/` usando esta estructura:
 
-```
+```env
 DB_USER=postgres
 DB_HOST=localhost
-DB_NAME=crud-peliculas
+DB_NAME=crud_peliculas
 DB_PASSWORD=tu_password
 DB_PORT=5432
 PORT=3000
@@ -54,64 +107,105 @@ PORT=3000
 
 ---
 
-## 🗄️ Base de datos
+# 🗄️ Configuración de PostgreSQL
 
-Crear la base de datos:
+## Crear la base de datos
 
 ```sql
-CREATE DATABASE crud-peliculas;
+CREATE DATABASE crud_peliculas;
 ```
 
-Crear tabla:
+## Crear tabla peliculas
 
 ```sql
 CREATE TABLE peliculas (
   id SERIAL PRIMARY KEY,
-  titulo VARCHAR(255),
-  director VARCHAR(255),
-  anio INT,
-  genero VARCHAR(100),
-  calificacion NUMERIC(3,1)
+  titulo VARCHAR(255) NOT NULL,
+  director VARCHAR(255) NOT NULL,
+  anio INT NOT NULL,
+  genero VARCHAR(100) NOT NULL,
+  calificacion NUMERIC(3,1) NOT NULL
 );
 ```
 
 ---
 
-## ▶️ Ejecutar backend
+# ▶️ Ejecutar el backend
+
+Desde la carpeta `backend` ejecutar:
 
 ```bash
 node server.js
 ```
 
-Servidor:
+Si todo funciona correctamente aparecerá:
 
-```
-http://localhost:3000
+```bash
+Servidor corriendo en http://localhost:3000
+PostgreSQL conectado
 ```
 
 ---
 
-## 🌐 Ejecutar frontend
+# 🌐 Ejecutar el frontend
 
-Abrir:
+Abrir el archivo:
 
-```
+```plaintext
 frontend/index.html
 ```
 
----
-
-## ✨ Funcionalidades
-
-- Crear películas
-- Listar películas
-- Editar películas
-- Eliminar películas
-- Persistencia en PostgreSQL
-- SPA sin recargas
+También puede ejecutarse usando la extensión Live Server de VS Code.
 
 ---
 
-## 👨‍💻 Autor
+# 📡 Endpoints API
 
-Proyecto académico CRUD Full Stack
+## Obtener películas
+
+```http
+GET /peliculas
+```
+
+## Crear película
+
+```http
+POST /peliculas
+```
+
+## Actualizar película
+
+```http
+PUT /peliculas/:id
+```
+
+## Eliminar película
+
+```http
+DELETE /peliculas/:id
+```
+
+---
+
+# 🎨 Características del diseño
+
+- Diseño moderno estilo streaming/cinema
+- Hero section interactiva
+- Navbar fija
+- Glassmorphism
+- Cards dinámicas
+- Responsive Design
+
+---
+
+# 👨‍💻 Autor
+
+Proyecto académico desarrollado por:
+
+- Jesús Landero
+
+---
+
+# 📌 Estado del proyecto
+
+✅ Proyecto funcional y finalizado
