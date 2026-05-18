@@ -61,21 +61,45 @@ form.addEventListener("submit", async function (e) {
 
 // RENDER
 function renderizarPeliculas() {
+
   lista.innerHTML = "";
 
   peliculas.forEach((p) => {
-    lista.innerHTML += `
-      <div>
-        <h3>${p.titulo}</h3>
-        <p>Director: ${p.director}</p>
-        <p>Año: ${p.anio}</p>
-        <p>Género: ${p.genero}</p>
-        <p>Calificación: ${p.calificacion}</p>
 
-        <button type="button" onclick="editarPelicula(${p.id})">Editar</button>
-        <button type="button" onclick="eliminarPelicula(${p.id})">Eliminar</button>
+    lista.innerHTML += `
+    
+      <div class="card">
+
+        <h3>${p.titulo}</h3>
+
+        <p><strong>Director:</strong> ${p.director}</p>
+
+        <p><strong>Año:</strong> ${p.anio}</p>
+
+        <p><strong>Género:</strong> ${p.genero}</p>
+
+        <p><strong>Calificación:</strong> ${p.calificacion}</p>
+
+        <div class="card-buttons">
+
+          <button
+            class="btn-editar"
+            onclick="editarPelicula(${p.id})"
+          >
+            Editar
+          </button>
+
+          <button
+            class="btn-eliminar"
+            onclick="eliminarPelicula(${p.id})"
+          >
+            Eliminar
+          </button>
+
+        </div>
+
       </div>
-      <hr>
+
     `;
   });
 }
